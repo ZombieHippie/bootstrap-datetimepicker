@@ -54,34 +54,14 @@ THE SOFTWARE.
 
 // ReSharper disable once InconsistentNaming
     DateTimePicker = function (element, options) {
-        var defaults = {
-            pickDate: true,
-            pickTime: true,
-            useMinutes: true,
-            useSeconds: false,
-            useCurrent: true,
-            minuteStepping: 1,
-            minDate: new pMoment({ y: 1900 }),
-            maxDate: new pMoment().add(100, "y"),
-            showToday: true,
-            collapse: true,
-            language: "en",
-            defaultDate: "",
-            disabledDates: false,
-            enabledDates: false,
-            icons: {},
-            useStrict: false,
-            direction: "auto",
-            sideBySide: false,
-            daysOfWeekDisabled: false
-        },
+        var defaults = $.fn.datetimepicker.defaults,
 
-		icons = {
-		    time: 'glyphicon glyphicon-time',
-		    date: 'glyphicon glyphicon-calendar',
-		    up: 'glyphicon glyphicon-chevron-up',
-		    down: 'glyphicon glyphicon-chevron-down'
-		},
+	icons = {
+	    time: 'glyphicon glyphicon-time',
+	    date: 'glyphicon glyphicon-calendar',
+	    up: 'glyphicon glyphicon-chevron-up',
+	    down: 'glyphicon glyphicon-chevron-down'
+	},
 
         picker = this,
 
@@ -327,7 +307,7 @@ THE SOFTWARE.
             pMoment.lang(picker.options.language);
             var dateStr = newDate;
             if (!dateStr) {
-                dateStr = getPickerInput().val()
+                dateStr = getPickerInput().val();
                 if (dateStr) picker.date = pMoment(dateStr, picker.format, picker.options.useStrict);
                 if (!picker.date) picker.date = pMoment();
             }
@@ -1188,4 +1168,27 @@ THE SOFTWARE.
             if (!data) $this.data('DateTimePicker', new DateTimePicker(this, options));
         });
     };
+    
+    $.fn.datetimepicker.defaults = {
+        pickDate: true,
+        pickTime: true,
+        useMinutes: true,
+        useSeconds: false,
+        useCurrent: true,
+        minuteStepping: 1,
+        minDate: new pMoment({ y: 1900 }),
+        maxDate: new pMoment().add(100, "y"),
+        showToday: true,
+        collapse: true,
+        language: "en",
+        defaultDate: "",
+        disabledDates: false,
+        enabledDates: false,
+        icons: {},
+        useStrict: false,
+        direction: "auto",
+        sideBySide: false,
+        daysOfWeekDisabled: false
+    };
+
 }));
